@@ -1,0 +1,13 @@
+em desenvolvimento de software dividir sempre e ganhar!
+
+-------------------------------------------------------
+
+ts = Type Script == cara que tem os códigos!
+
+--------------------------------------------------------
+
+todos os pacotes da nossa aplicação ficam no packet json
+-----------------------------------------------------------
+mr-auto serve para pegar todo os espacos
+-------------------------------------------------------------
+a diretiva [ngclass] faz com que ele utilize uma classe (bootstrap) 
