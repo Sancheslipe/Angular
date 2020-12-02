@@ -13,7 +13,7 @@ namespace EscolaApexWepApi.models
         }
         public int Id { get; set; }
         public string nome { get; set; }
-        public IEnumerable<AlunoDisciplina> AlunosDisciplinas { get; set; }
+        public IEnumerable<Disciplina> Disciplinas { get; set; }
     }
 
 }

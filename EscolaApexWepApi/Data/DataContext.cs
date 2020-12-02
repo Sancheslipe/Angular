@@ -9,7 +9,7 @@ namespace EscolaApexWepApi.Data
         public DataContext(DbContextOptions<DataContext> opcoes): base(opcoes){}
             public DbSet<Aluno> Aluno { get; set; }
 
-            public DbSet<Professor> professor { get; set; }
+            public DbSet<Professor> Professor { get; set; }
 
             public DbSet<Disciplina> Disciplina { get; set; }
             public DbSet<AlunoDisciplina> AlunoDisciplina { get; set; }
