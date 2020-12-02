@@ -10,4 +10,5 @@ todos os pacotes da nossa aplicação ficam no packet json
 -----------------------------------------------------------
 mr-auto serve para pegar todo os espacos
 -------------------------------------------------------------
-a diretiva [ngclass] faz com que ele utilize uma classe (bootstrap) 
+a diretiva [ngclass] faz com que ele utilize uma classe (bootstrap)
+. 
