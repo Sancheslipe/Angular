@@ -1,5 +1,6 @@
+import { ProfessorService } from './../services/professor.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Professor } from '../models/Professor';
 
 @Component({
@@ -10,33 +11,87 @@ import { Professor } from '../models/Professor';
 export class ProfessoresComponent implements OnInit {
 
   public titulo = 'Professores';
-  public profSelected: Professor = new Professor();
+  public professorSelected: Professor = new Professor();
   public professoresForm = new FormGroup({
     id: new FormControl(''),
     nome: new FormControl(''),
-    disciplina: new FormControl(''),})
-    
+    disciplina: new FormControl(''),
+  })
 
-  public professores = [
-    {id:1, nome:'Ralf', disciplina: 'C#'},
-    {id:2, nome:'Luiz', disciplina: 'Java'},
-    {id:3, nome:'DIego', disciplina: 'Angular'},
 
-  ];
+  public professores: Professor[] = [];
 
-    constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder,
+    private professorServico: ProfessorService) {
     this.createForm();
   }
-  
-  createForm(){
+
+  createForm() {
     this.professoresForm = this.fb.group({
       id: [''],
-      nome: [''],
-      disciplina:['']
+      nome: ['', Validators.required]
     })
   }
-   profSelect(prof: any){
-    this.profSelected = prof;
+
+  carregarProfessores() {
+    this.professorServico.obterTodos().subscribe(
+      (resultado: Professor[]) => {
+        this.professores = resultado;
+      },
+      (erro: any) => {
+        console.log(erro);
+      }
+    );
+  }
+
+  novoProfessor() {
+    this.professorSelected = new Professor();
+    this.professorSelected.id = -1;
+    this.professoresForm.patchValue(this.professorSelected)
+  }
+
+  salvarProfessor(professor: Professor) {
+    if (this.professorSelected.id === -1) {
+      professor.id = 0;
+      this.professorServico.salvar(professor).subscribe(
+        (resultado: any) => {
+          console.log(resultado);
+          this.professorSelected = resultado;
+          this.carregarProfessores();
+        },
+        (erro: any) => {
+          console.log(erro);
+        }
+      );
+    } else {
+      this.professorServico.editar(professor).subscribe(
+        (resultado: any) => {
+          console.log(resultado);
+          this.professorSelected = resultado;
+          this.carregarProfessores();
+        },
+        (erro: any) => {
+          console.log(erro);
+        }
+      );
+    }
+
+  }
+
+  excluirProfessor(professor: Professor) {
+    this.professorServico.excluir(professor.id).subscribe(
+      (retorno: any) => {
+        console.log(retorno);
+        this.carregarProfessores();
+      },
+      (erro: any) => {
+        console.log(erro);
+      }
+    )
+  }
+
+  profSelect(prof: any) {
+    this.professorSelected = prof;
     this.professoresForm.patchValue(prof);
   }
 
@@ -44,18 +99,19 @@ export class ProfessoresComponent implements OnInit {
   //   this.alunoSelected = aluno;
   // }
 
-  voltar(){
-   this.profSelected = new Professor();
+  voltar() {
+    this.professorSelected = new Professor();
   }
 
   // voltar(){
   //   this.alunoSelected = new Aluno();
   // }
-  onSubmit(){
-    console.log(this.professoresForm.value);
+  onSubmit() {
+    this.salvarProfessor(this.professoresForm.value);
   }
 
   ngOnInit() {
+    this.carregarProfessores();
   }
 
 }

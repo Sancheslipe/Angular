@@ -6,6 +6,6 @@ namespace EscolaApexWepApi.Data.interfaces
     public interface IRepositorioDisciplina
     {
          Task<Disciplina[]>ObterTodasAsync(bool incluirProfessor);
-         Task<Disciplina>ObterpeloIdAsync(int DisciplinaId);
+         Task<Disciplina>ObterPeloIdAsync(int DisciplinaId);
     }
 }

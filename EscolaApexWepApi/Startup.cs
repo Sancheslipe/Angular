@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EscolaApexWebApi.Data.Services;
 using EscolaApexWepApi.Data;
 using EscolaApexWepApi.Data.interfaces;
 using EscolaApexWepApi.Data.Services;
@@ -42,8 +43,10 @@ namespace EscolaApexWepApi
                         opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                     );
         
-        services.AddScoped<IRepositorio, Repositorio>();
-        services.AddScoped<IRepositorioAluno, RepositorioAluno>();
+            services.AddScoped<IRepositorio, Repositorio>();
+            services.AddScoped<IRepositorioAluno, RepositorioAluno>();
+            services.AddScoped<IRepositorioProfessor, RepositorioProfessor>();
+            services.AddScoped<IRepositorioDisciplina, RepositorioDisciplina>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
