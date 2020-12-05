@@ -9,6 +9,7 @@ namespace EscolaApexWepApi.Data.Services
     public class RepositorioDisciplina : IRepositorioDisciplina
     {
        private readonly DataContext _contexto;
+       
         public RepositorioDisciplina(DataContext contexto)
         {
             this._contexto = contexto;

@@ -1,3 +1,4 @@
+import { DisciplinaComponent } from './disciplina/disciplina.component';
 import { PrincipalComponent } from './principal/principal.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { ProfessoresComponent } from './professores/professores.component';
@@ -10,6 +11,7 @@ const routes: Routes = [
     {path: 'principal',component: PrincipalComponent},
     {path:'alunos', component: AlunosComponent},
     {path:'professores', component: ProfessoresComponent},
+    {path:'disciplinas', component: DisciplinaComponent},
     {path:'perfil', component: PerfilComponent}
     
 
